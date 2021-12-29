@@ -2,7 +2,8 @@
 #include "Application.h"
 #include "PhysBody3D.h"
 #include "ModuleCamera3D.h"
-
+#include "ModulePlayer.h"
+#include "PhysVehicle3D.h"
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	CalculateViewMatrix();
@@ -59,6 +60,17 @@ update_status ModuleCamera3D::Update(float dt)
 	Position += newPos;
 	Reference += newPos;
 
+	//vec3 App->player->vehicle->vehicle; 
+	btRaycastVehicle* v;
+	v = App->player->vehicle->vehicle;
+	//vehicle.getForwardVector();
+	Position.x = v->getChassisWorldTransform().getOrigin().getX() - 14 * v->getForwardVector().getX();
+	Position.y = v->getChassisWorldTransform().getOrigin().getY() + 5 * v->getUpAxis();
+	Position.z = v->getChassisWorldTransform().getOrigin().getZ() - 14 * v->getForwardVector().getZ();
+	float playerPosX = v->getChassisWorldTransform().getOrigin().getX() + 14 * v->getForwardVector().getX();
+	float playerPosZ = v->getChassisWorldTransform().getOrigin().getZ() + 14 * v->getForwardVector().getZ();
+
+	LookAt(vec3(playerPosX, 1, playerPosZ));
 	// Mouse motion ----------------
 
 	if(App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
@@ -110,7 +122,7 @@ void ModuleCamera3D::Look(const vec3 &Position, const vec3 &Reference, bool Rota
 
 	Z = normalize(Position - Reference);
 	X = normalize(cross(vec3(0.0f, 1.0f, 0.0f), Z));
-	Y = cross(Z, X);
+	Y = cross(Z, X);	
 
 	if(!RotateAroundReference)
 	{
