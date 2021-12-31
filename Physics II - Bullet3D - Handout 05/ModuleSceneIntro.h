@@ -9,6 +9,10 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+struct Map {
+	p2DynArray<Cube> cubo;
+	p2DynArray<PhysBody3D*> cubo3d;
+};
 
 
 class ModuleSceneIntro : public Module
@@ -25,9 +29,6 @@ public:
 
 	void CreateCubeMap(const vec3 pos, const vec3 dim, Color color);
 
-	p2DynArray<Cube*> cubo;
-	p2DynArray<PhysBody3D*> cubo3d;
-
 public:
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];
@@ -37,6 +38,7 @@ public:
 	Sphere s_snake2[MAX_SNAKE];
 	*/
 
+	Map map;
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
 

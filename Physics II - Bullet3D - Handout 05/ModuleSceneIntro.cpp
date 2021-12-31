@@ -39,6 +39,10 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();
 
+	for (int i = 0; i < map.cubo.Count(); i++) {
+		map.cubo[i].Render();
+	}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -48,8 +52,8 @@ void ModuleSceneIntro::CreateCubeMap(const vec3 pos, const vec3 dim, Color color
 	a = new Cube(dim.x, dim.y, dim.z);
 	a->color = color;
 	a->SetPos(pos.x, pos.y, pos.z);
-	cubo.PushBack(a);
-	cubo3d.PushBack(App->physics->AddBody(*a, 0.0f));
+	map.cubo.PushBack(*a);
+	map.cubo3d.PushBack(App->physics->AddBody(*a, 0.0f));
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
