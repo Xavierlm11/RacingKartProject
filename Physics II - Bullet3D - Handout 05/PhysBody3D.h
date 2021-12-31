@@ -20,8 +20,10 @@ public:
 	void SetPos(float x, float y, float z);
 
 	const vec3 GetPos() const;
-private:
+
 	btRigidBody* body = nullptr;
+private:
+	
 
 public:
 	p2List<Module*> collision_listeners;
