@@ -9,6 +9,8 @@
 struct PhysBody3D;
 struct PhysMotor3D;
 
+
+
 class ModuleSceneIntro : public Module
 {
 public:
@@ -20,6 +22,11 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
+
+	void CreateCubeMap(const vec3 pos, const vec3 dim, Color color);
+
+	p2DynArray<Cube*> cubo;
+	p2DynArray<PhysBody3D*> cubo3d;
 
 public:
 	/*
