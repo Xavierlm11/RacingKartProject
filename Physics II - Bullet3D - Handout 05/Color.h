@@ -32,3 +32,7 @@ extern Color Black;
 extern Color White;
 extern Color Carne;
 extern Color Yellow;
+extern Color Orange;
+extern Color Pink;
+extern Color Lila;
+extern Color Indigo;
