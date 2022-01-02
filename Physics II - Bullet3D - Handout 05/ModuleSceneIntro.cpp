@@ -22,29 +22,54 @@ bool ModuleSceneIntro::Start()
 	CreateRamp({ 0,0,0 }, { 10,1,20 }, 20, {0,0,1}, Blue);
 	CreateCubeMap({ 0,0,0 }, { 10,1,20 }, Blue);
 
-	CreateCubeMap({ 130,0,-70 }, { 30,1,10 }, Red);
-	CreateCubeMap({ 130,0,-60 }, { 30,1,10 }, White);
-	CreateCubeMap({ 130,0,-50 }, { 30,1,10 }, Green);
-	CreateCubeMap({ 130,0,-40 }, { 30,1,10 }, Blue);
-	CreateCubeMap({ 130,0,-30 }, { 30,1,10 }, Red);
-	CreateCubeMap({ 130,0,-20 }, { 30,1,10 }, White);
-	CreateCubeMap({ 130,0,-10 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 70,8.6,-195.5 }, { 30,1,30 }, Blue);
+	CreateCubeMap({ 70,8.6,-215.5 }, { 30,1,10 }, White);
+	CreateCubeMap({ 70,8.6,-225.5 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 70,8.6,-235.5 }, { 30,1,10 }, Yellow);
 
-	CreateCubeMap({ 130,0,0 }, { 30,1,10 }, Blue);
-	CreateCubeMap({ 130,0,10 }, { 30,1,10 }, Red);
-	CreateCubeMap({ 130,0,20 }, { 30,1,10 }, White);
-	CreateCubeMap({ 130,0,30 }, { 30,1,10 }, Green);
-	CreateCubeMap({ 130,0,40 }, { 30,1,10 }, Blue);
-	CreateCubeMap({ 130,0,50 }, { 30,1,10 }, Red);
-	CreateCubeMap({ 130,0,60 }, { 30,1,10 }, White);
-	CreateCubeMap({ 130,0,70 }, { 30,1,10 }, Green);
-	CreateCubeMap({ 130,0,80 }, { 30,1,10 }, Blue);
-	CreateCubeMap({ 130,0,90 }, { 30,1,10 }, Red);
-	CreateCubeMap({ 130,0,100 }, { 30,1,10 }, White);
-	CreateCubeMap({ 130,0,110 }, { 30,1,10 }, Green);
-	CreateCubeMap({ 130,0,120 }, { 30,1,10 }, Blue);
-	CreateCubeMap({ 130,0,130 }, { 30,1,10 }, Red);
-	CreateCubeMap({ 130,0,140 }, { 30,1,10 }, White);
+	CreateCubeMap({ 70,8.6,-255.5 }, { 30,1,30 }, Blue);
+	CreateCubeMap({ 90,8.6,-255.5 }, { 10,1,30 }, Yellow);
+	CreateCubeMap({ 100,8.6,-255.5 }, { 10,1,30 }, Red);
+	CreateCubeMap({ 110,8.6,-255.5 }, { 10,1,30 }, Blue);
+
+	CreateCubeMap({ 130,8.6,-255.5 }, { 30,1,30 }, Blue);
+	CreateCubeMap({ 130,8.6,-234.75 }, { 30,1,11.6 }, White);
+	CreateCubeMap({ 130,8.6,-224 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 130,8.6,-214 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,8.6,-204 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 130,8.6,-194 }, { 30,1,10 }, White);
+	CreateCubeMap({ 130,8.6,-184 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 130,8.6,-174 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,8.6,-164 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 130,8.6,-154 }, { 30,1,10 }, White);
+	CreateCubeMap({ 130,8.6,-144 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 130,8.6,-134 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,8.6,-124 }, { 30,1,10 }, Red);
+
+	CreateRamp({ 130,4.3,-94.5 }, { 30,1,50 }, 10, { 1,0,0 }, Blue);
+
+	CreateCubeMap({ 130,0,-65 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 130,0,-55 }, { 30,1,10 }, White);
+	CreateCubeMap({ 130,0,-45 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 130,0,-35 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,0,-25 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 130,0,-15 }, { 30,1,10 }, White);
+	CreateCubeMap({ 130,0,-5 }, { 30,1,10 }, Green);
+
+	CreateCubeMap({ 130,0,5 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,0,15 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 130,0,25 }, { 30,1,10 }, White);
+	CreateCubeMap({ 130,0,35 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 130,0,45 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,0,55 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 130,0,65 }, { 30,1,10 }, White);
+	CreateCubeMap({ 130,0,75 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 130,0,85 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,0,95 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 130,0,105 }, { 30,1,10 }, White);
+	CreateCubeMap({ 130,0,115 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 130,0,125 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 130,0,135 }, { 30,1,10 }, White);
 	CreateCubeMap({ 130,0,155 }, { 30,1,30 }, Green);
 
 	CreateCubeMap({ 110,0,155 }, { 10,1,30 }, Blue);
@@ -113,9 +138,46 @@ bool ModuleSceneIntro::Start()
 	CreateCubeMap({ -120,25.5,-9.5 }, { 30,1,10 }, Blue);
 	CreateCubeMap({ -120,25.5,-19.5 }, { 30,1,10 }, Indigo);
 
-	CreateRamp({ -120,21.2,-49.5 }, { 30,1,50 }, 170, { 1,0,0 }, Yellow);
+	CreateRamp({ -120,21.2,-49}, { 30,1,50 }, 170, { 1,0,0 }, Yellow);
 
-	//	CreateRamp({ -120,4,80 }, { 30,1,50 }, 10, { 1,0,0 }, Blue);
+	CreateCubeMap({ -120,17,-78.2 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ -120,17,-88.2 }, { 30,1,10 }, White);
+	CreateCubeMap({ -120,17,-98.2 }, { 30,1,10 }, Indigo);
+	CreateCubeMap({ -120,17,-108.2 }, { 30,1,10 }, Yellow);
+	CreateCubeMap({ -120,17,-118.2 }, { 30,1,10 }, Indigo);
+	CreateCubeMap({ -120,17,-128.2 }, { 30,1,10 }, Red);
+	CreateCubeMap({ -120,17,-138.2 }, { 30,1,10 }, Green);
+
+	CreateRamp({ -120,12.7,-167.5 }, { 30,1,50 }, 170, { 1,0,0 }, Yellow);
+
+	CreateCubeMap({ -120,8.6,-195.5 }, { 30,1,10 }, Indigo);
+	CreateCubeMap({ -120,8.6,-205.5 }, { 30,1,10 }, Red);
+	CreateCubeMap({ -120,8.6,-215.5 }, { 30,1,10 }, Green);
+	CreateCubeMap({ -120,8.6,-225.5 }, { 30,1,10 }, Indigo);
+	CreateCubeMap({ -120,8.6,-235.5 }, { 30,1,10 }, Red);
+	CreateCubeMap({ -120,8.6,-255.5 }, { 30,1,30 }, Green);
+
+	CreateCubeMap({ -30,8.6,-255.5 }, { 10,1,30 }, Green);
+	CreateCubeMap({ -40,8.6,-255.5 }, { 10,1,30 }, Blue);
+	CreateCubeMap({ -50,8.6,-255.5 }, { 10,1,30 }, Red);
+	CreateCubeMap({ -60,8.6,-255.5 }, { 10,1,30 }, White);
+	CreateCubeMap({ -70,8.6,-255.5 }, { 10,1,30 }, Green);
+	CreateCubeMap({ -80,8.6,-255.5 }, { 10,1,30 }, Blue);
+	CreateCubeMap({ -90,8.6,-255.5 }, { 10,1,30 }, Red);
+	CreateCubeMap({ -100,8.6,-255.5 }, { 10,1,30 }, White);
+
+	CreateCubeMap({ -10,8.6,-255.5 }, { 30,1,30 }, Green);
+	CreateCubeMap({ -10,8.6,-235.5 }, { 30,1,10 }, Red);
+	CreateCubeMap({ -10,8.6,-225.5 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ -10,8.6,-215.5 }, { 30,1,10 }, Red);
+	CreateCubeMap({ -10,8.6,-195.5 }, { 30,1,30 }, Green);
+
+	CreateCubeMap({ 10,8.6,-195.5 }, { 10,1,30 }, Red);
+	CreateCubeMap({ 20,8.6,-195.5 }, { 10,1,30 }, Yellow);
+	CreateCubeMap({ 30,8.6,-195.5 }, { 10,1,30 }, Blue);
+	CreateCubeMap({ 40,8.6,-195.5 }, { 10,1,30 }, Indigo);
+	CreateCubeMap({ 50,8.6,-195.5 }, { 10,1,30 }, Lila);
+
 	return ret;
 }
 
