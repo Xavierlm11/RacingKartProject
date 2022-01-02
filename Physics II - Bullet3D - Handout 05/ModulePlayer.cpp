@@ -21,34 +21,21 @@ bool ModulePlayer::Start()
 	VehicleInfo car;
 
 	// Car properties ----------------------------------------
-	//car.chassis_size.Set(2, 2, 4);
-	//car.chassis_offset.Set(0, 1.5, 0);
-	//car.mass = 500.0f;
-	//car.suspensionStiffness = 15.88f;
-	//car.suspensionCompression = 0.83f;
-	//car.suspensionDamping = 0.88f;
-	//car.maxSuspensionTravelCm = 1000.0f;
-	//car.frictionSlip = 1000.5;
-	//car.maxSuspensionForce = 6000.0f;
 
 	car.chassis_size.Set(2.0f, 0.55f, 3.0f);
 	car.chassis_offset.Set(0.0f, 0.5f, 0.0f);
-	/*car.bridge_size.Set(0.8f, 0.75f, 2.0f);
-	car.bridge_offset.Set(0.0f, 0.5f, 2.5f);
-	car.front_wing_size.Set(2.0f, 0.25f, 0.7f);
-	car.front_wing_offset.Set(0.0f, 0.5f, 3.75f);*/
 	car.rear_wing_size.Set(1.2f, 0.05f, 0.5f);
 	car.rear_wing_offset.Set(0.0f, 1.05f, -1.5f);
 	car.vertical_wing_size.Set(0.05f, 0.5f, 0.5);
 	car.vertical_wing_offset.Set(0.6f, 1.0f, -1.5f);
 	car.person_size.Set(0.9f, 1.3f, 0.7f);
 	car.person_offset.Set(0.0f, 1.0f, -0.5f);
-	car.mass = 1000.0f;
+	car.mass = 500.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
-	car.frictionSlip = 7.0f;
+	car.frictionSlip = 1000.5f;
 	car.maxSuspensionForce = 6000.0f;
 
 	// Wheel properties ---------------------------------------
