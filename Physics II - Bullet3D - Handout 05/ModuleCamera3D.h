@@ -21,7 +21,7 @@ public:
 private:
 
 	void CalculateViewMatrix();
-
+	bool click = false;
 public:
 	
 	vec3 X, Y, Z, Position, Reference;
