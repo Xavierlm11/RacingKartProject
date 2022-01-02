@@ -26,16 +26,12 @@ struct VehicleInfo
 	
 	vec3 chassis_size;
 	vec3 chassis_offset;
-	/*vec3 bridge_size;
-	vec3 bridge_offset;
-	vec3 front_wing_size;
-	vec3 front_wing_offset;*/
 	vec3 vertical_wing_size;
 	vec3 vertical_wing_offset;
 	vec3 rear_wing_size;
 	vec3 rear_wing_offset;
-	vec3 upper_size;
-	vec3 upper_offset;
+	vec3 person_size;
+	vec3 person_offset;
 
 	float mass;
 	float suspensionStiffness; // default to 5.88 / 10.0 offroad / 50.0 sports car / 200.0 F1 car

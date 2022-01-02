@@ -25,7 +25,7 @@ void PhysVehicle3D::Render()
 {
 	Cylinder wheel;
 
-	wheel.color = Blue;
+	wheel.color = Black;
 
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
@@ -37,19 +37,6 @@ void PhysVehicle3D::Render()
 
 		wheel.Render();
 	}
-
-	/*Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
-	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
-	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
-	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
-	offset = offset.rotate(q.getAxis(), q.getAngle());
-
-	chassis.transform.M[12] += offset.getX();
-	chassis.transform.M[13] += offset.getY();
-	chassis.transform.M[14] += offset.getZ();
-
-
-	chassis.Render();*/
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
@@ -58,25 +45,7 @@ void PhysVehicle3D::Render()
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
-	//chassis.color = Dark_Green;
-
-	//Cube bridge(info.bridge_size.x, info.bridge_size.y, info.bridge_size.z);
-	//vehicle->getChassisWorldTransform().getOpenGLMatrix(&bridge.transform);
-	//btVector3 b_offset(info.bridge_offset.x, info.bridge_offset.y, info.bridge_offset.z);
-	//b_offset = b_offset.rotate(q.getAxis(), q.getAngle());
-	//bridge.transform.M[12] += b_offset.getX();
-	//bridge.transform.M[13] += b_offset.getY();
-	//bridge.transform.M[14] += b_offset.getZ();
-	////bridge.color = Dark_Green;
-
-	//Cube front_wing(info.front_wing_size.x, info.front_wing_size.y, info.front_wing_size.z);
-	//vehicle->getChassisWorldTransform().getOpenGLMatrix(&front_wing.transform);
-	//btVector3 fw_offset(info.front_wing_offset.x, info.front_wing_offset.y, info.front_wing_offset.z);
-	//fw_offset = fw_offset.rotate(q.getAxis(), q.getAngle());
-	//front_wing.transform.M[12] += fw_offset.getX();
-	//front_wing.transform.M[13] += fw_offset.getY();
-	//front_wing.transform.M[14] += fw_offset.getZ();
-	////front_wing.color = Yellow;
+	chassis.color = Red;
 
 	Cube rear_wing(info.rear_wing_size.x, info.rear_wing_size.y, info.rear_wing_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&rear_wing.transform);
@@ -85,7 +54,7 @@ void PhysVehicle3D::Render()
 	rear_wing.transform.M[12] += rw_offset.getX();
 	rear_wing.transform.M[13] += rw_offset.getY();
 	rear_wing.transform.M[14] += rw_offset.getZ();
-	//rear_wing.color = Yellow;
+	rear_wing.color = White;
 
 	Cube right_wing(info.vertical_wing_size.x, info.vertical_wing_size.y, info.vertical_wing_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&right_wing.transform);
@@ -94,7 +63,7 @@ void PhysVehicle3D::Render()
 	right_wing.transform.M[12] += vw_offset.getX();
 	right_wing.transform.M[13] += vw_offset.getY();
 	right_wing.transform.M[14] += vw_offset.getZ();
-	//right_wing.color = Yellow;
+	right_wing.color = White;
 
 	Cube left_wing = right_wing;
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&left_wing.transform);
@@ -103,15 +72,16 @@ void PhysVehicle3D::Render()
 	left_wing.transform.M[12] += lw_offset.getX();
 	left_wing.transform.M[13] += lw_offset.getY();
 	left_wing.transform.M[14] += lw_offset.getZ();
-	//left_wing.color = Yellow;
+	left_wing.color = White;
 
-	Cube upper(info.upper_size.x, info.upper_size.y, info.upper_size.z);
-	vehicle->getChassisWorldTransform().getOpenGLMatrix(&upper.transform);
-	btVector3 u_offset(info.upper_offset.x, info.upper_offset.y, info.upper_offset.z);
+	Cube person(info.person_size.x, info.person_size.y, info.person_size.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&person.transform);
+	btVector3 u_offset(info.person_offset.x, info.person_offset.y, info.person_offset.z);
 	u_offset = u_offset.rotate(q.getAxis(), q.getAngle());
-	upper.transform.M[12] += u_offset.getX();
-	upper.transform.M[13] += u_offset.getY();
-	upper.transform.M[14] += u_offset.getZ();
+	person.transform.M[12] += u_offset.getX();
+	person.transform.M[13] += u_offset.getY();
+	person.transform.M[14] += u_offset.getZ();
+	person.color = Carne;
 
 	chassis.Render();
 	/*bridge.Render();
@@ -119,7 +89,7 @@ void PhysVehicle3D::Render()
 	rear_wing.Render();
 	right_wing.Render();
 	left_wing.Render();
-	upper.Render();
+	person.Render();
 }
 
 // ----------------------------------------------------------------------------

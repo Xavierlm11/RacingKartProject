@@ -323,11 +323,11 @@ PhysVehicle3D* ModulePhysics3D::AddVehicle(const VehicleInfo& info)
 	right_wing_trans.setOrigin(btVector3(-info.vertical_wing_offset.x, info.vertical_wing_offset.y, info.vertical_wing_offset.z));
 	comShape->addChildShape(right_wing_trans, rightWingShape);
 
-	btCollisionShape* upperWingShape = new btBoxShape(btVector3(info.upper_size.x * 0.5f, info.upper_size.y * 0.5f, info.upper_size.z * 0.5f));
+	btCollisionShape* upperWingShape = new btBoxShape(btVector3(info.person_size.x * 0.5f, info.person_size.y * 0.5f, info.person_size.z * 0.5f));
 	shapes.add(upperWingShape);
 	btTransform upper_trans;
 	upper_trans.setIdentity();
-	upper_trans.setOrigin(btVector3(info.upper_offset.x, info.upper_offset.y, info.upper_offset.z));
+	upper_trans.setOrigin(btVector3(info.person_offset.x, info.person_offset.y, info.person_offset.z));
 	comShape->addChildShape(upper_trans, upperWingShape);
 
 	btTransform startTransform;
