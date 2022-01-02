@@ -28,6 +28,8 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 	void CreateCubeMap(const vec3 pos, const vec3 dim, Color color);
+	//orient 
+	void CreateRamp(const vec3 pos, const vec3 dim, float angle, const vec3& orient, Color color);
 
 public:
 	/*

@@ -19,6 +19,7 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
+	CreateRamp({ 0,0,0 }, { 10,1,20 }, 20, {0,0,1}, Blue);
 	CreateCubeMap({ 0,0,0 }, { 10,1,20 }, Blue);
 
 	return ret;
@@ -52,6 +53,16 @@ void ModuleSceneIntro::CreateCubeMap(const vec3 pos, const vec3 dim, Color color
 	a = new Cube(dim.x, dim.y, dim.z);
 	a->color = color;
 	a->SetPos(pos.x, pos.y, pos.z);
+	map.cubo.PushBack(*a);
+	map.cubo3d.PushBack(App->physics->AddBody(*a, 0.0f));
+}
+
+void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle,const vec3& orient, Color color) {
+	Cube* a;
+	a = new Cube(dim.x, dim.y, dim.z);
+	a->color = color;
+	a->SetPos(pos.x, pos.y, pos.z);
+	a->SetRotation(angle, orient);
 	map.cubo.PushBack(*a);
 	map.cubo3d.PushBack(App->physics->AddBody(*a, 0.0f));
 }
