@@ -21,16 +21,82 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 	CreateRamp({ 0,0,0 }, { 10,1,20 }, 20, {0,0,1}, Blue);
 	CreateCubeMap({ 0,0,0 }, { 10,1,20 }, Blue);
-	App->audio->PlayMusic("Assets/BgMusic.ogg",0.0f);
+	//App->audio->PlayMusic("Assets/BgMusic.ogg",0.0f);
+	CreateMap();
+	CreateWall();
+	
+
+	return ret;
+}
+
+// Load assets
+bool ModuleSceneIntro::CleanUp()
+{
+	LOG("Unloading Intro scene");
+
+	return true;
+}
+
+// Update
+update_status ModuleSceneIntro::Update(float dt)
+{
+	Plane p(0, 1, 0, 0);
+	p.axis = true;
+	p.Render();
+
+	for (int i = 0; i < map.cubo.Count(); i++) {
+		map.cubo[i].Render();
+	}
+
+	return UPDATE_CONTINUE;
+}
+
+void ModuleSceneIntro::CreateMap() {
+
+	/*--------------------BackPack--------------------*/
+	CreateCubeMap({ 150,8.6,-154 }, { 10,1,10 }, Blue);
+	CreateCubeMap({ 160,8.6,-154 }, { 10,1,10 }, Indigo);
+	CreateCubeMap({ 170,8.6,-154 }, { 10,1,10 }, Violet);
+	CreateCubeMap({ 190,8.6,-154 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 190,8.6,-144 }, { 30,1,10 }, Orange);
+	CreateCubeMap({ 190,8.6,-134 }, { 30,1,10 }, Yellow);
+	CreateCubeMap({ 190,8.6,-124 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 190,8.6,-114 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 190,8.6,-104 }, { 30,1,10 },Indigo);
+	CreateCubeMap({ 190,8.6,-94 }, { 30,1,10 }, Violet);
+
+	CreateRamp({ 190,9.5,-86 }, { 30,1,10 }, 170, { 1,0,0 }, Red);
+
+	CreateRamp({ 190,3.5,-39 }, { 30,1,40 }, 10, { 1,0,0 }, Orange);
+
+	CreateCubeMap({ 190,0,-15 }, { 30,1,10 }, Yellow);
+	CreateCubeMap({ 190,0,-5 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 190,0,5 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 190,0,15 }, { 30,1,10 }, Indigo);
+	CreateCubeMap({ 190,0,25 }, { 30,1,10 }, Violet);
+	CreateCubeMap({ 190,0,35 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 190,0,45 }, { 30,1,10 }, Orange);
+	CreateCubeMap({ 190,0,55 }, { 30,1,10 }, Yellow);
+	CreateCubeMap({ 190,0,65 }, { 30,1,10 }, Green);
+	CreateCubeMap({ 190,0,75 }, { 30,1,10 }, Blue);
+	CreateCubeMap({ 190,0,85 }, { 30,1,10 }, Indigo);
+	CreateCubeMap({ 190,0,95 }, { 30,1,10 }, Violet);
+	CreateCubeMap({ 190,0,105 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 170,0,105 }, { 10,1,10 }, Orange);
+	CreateCubeMap({ 160,0,105 }, { 10,1,10 }, Yellow);
+	CreateCubeMap({ 150,0,105 }, { 10,1,10 }, Green);
+	
+	/*--------------------BackPack--------------------*/
+
 	CreateCubeMap({ 70,8.6,-195.5 }, { 30,1,30 }, Red);
 	CreateCubeMap({ 70,8.6,-215.5 }, { 30,1,10 }, Orange);
-	CreateCubeMap({ 70,8.6,-225.5 }, { 30,1,10 },Yellow);
+	CreateCubeMap({ 70,8.6,-225.5 }, { 30,1,10 }, Yellow);
 	CreateCubeMap({ 70,8.6,-235.5 }, { 30,1,10 }, Green);
 
 	CreateCubeMap({ 70,8.6,-255.5 }, { 30,1,30 }, Blue);
 	CreateCubeMap({ 90,8.6,-255.5 }, { 10,1,30 }, Indigo);
 	CreateCubeMap({ 100,8.6,-255.5 }, { 10,1,30 }, Violet);
-	CreateCubeMap({ 110,8.6,-255.5 }, { 10,1,30 },Red);
+	CreateCubeMap({ 110,8.6,-255.5 }, { 10,1,30 }, Red);
 
 	CreateCubeMap({ 130,8.6,-255.5 }, { 30,1,30 }, Orange);
 	CreateCubeMap({ 130,8.6,-234.75 }, { 30,1,11.6 }, Yellow);
@@ -55,7 +121,6 @@ bool ModuleSceneIntro::Start()
 	CreateCubeMap({ 130,0,-25 }, { 30,1,10 }, Indigo);
 	CreateCubeMap({ 130,0,-15 }, { 30,1,10 }, Violet);
 	CreateCubeMap({ 130,0,-5 }, { 30,1,10 }, Red);
-
 	CreateCubeMap({ 130,0,5 }, { 30,1,10 }, Orange);
 	CreateCubeMap({ 130,0,15 }, { 30,1,10 }, Yellow);
 	CreateCubeMap({ 130,0,25 }, { 30,1,10 }, Green);
@@ -92,7 +157,7 @@ bool ModuleSceneIntro::Start()
 	CreateCubeMap({ -60,0,155 }, { 10,1,30 }, Indigo);
 	CreateCubeMap({ -70,0,155 }, { 10,1,30 }, Violet);
 	CreateCubeMap({ -80,0,155 }, { 10,1,30 }, Red);
-	CreateCubeMap({ -90,0,155 }, { 10,1,30 },Orange);
+	CreateCubeMap({ -90,0,155 }, { 10,1,30 }, Orange);
 	CreateCubeMap({ -100,0,155 }, { 10,1,30 }, Yellow);
 	CreateCubeMap({ -120,0,155 }, { 30,1,30 }, Green);
 
@@ -121,7 +186,7 @@ bool ModuleSceneIntro::Start()
 	CreateCubeMap({ -11.5,16.8,40.5 }, { 30,1,10 }, Red);
 	CreateCubeMap({ -11.5,16.8,30.5 }, { 30,1,10 }, Orange);
 	CreateCubeMap({ -11.5,16.8,20.5 }, { 30,1,10 }, Yellow);
-	
+
 	CreateRamp({ -51,21.2,70.5 }, { 50,1,30 }, 170, { 0,0,1 }, Green);
 
 	CreateCubeMap({ -80.5,25.5,70.5 }, { 10,1,30 }, Blue);
@@ -131,14 +196,14 @@ bool ModuleSceneIntro::Start()
 
 	CreateCubeMap({ -120,25.5,50.5 }, { 30,1,10 }, Orange);
 	CreateCubeMap({ -120,25.5,40.5 }, { 30,1,10 }, Yellow);
-	CreateCubeMap({ -120,25.5,30.5 }, { 30,1,10 },Green);
+	CreateCubeMap({ -120,25.5,30.5 }, { 30,1,10 }, Green);
 	CreateCubeMap({ -120,25.5,20.5 }, { 30,1,10 }, Blue);
 	CreateCubeMap({ -120,25.5,10.5 }, { 30,1,10 }, Indigo);
 	CreateCubeMap({ -120,25.5,0.5 }, { 30,1,10 }, Violet);
 	CreateCubeMap({ -120,25.5,-9.5 }, { 30,1,10 }, Red);
 	CreateCubeMap({ -120,25.5,-19.5 }, { 30,1,10 }, Orange);
 
-	CreateRamp({ -120,21.2,-49}, { 30,1,50 }, 170, { 1,0,0 }, Yellow);
+	CreateRamp({ -120,21.2,-49 }, { 30,1,50 }, 170, { 1,0,0 }, Yellow);
 
 	CreateCubeMap({ -120,17,-78.2 }, { 30,1,10 }, Green);
 	CreateCubeMap({ -120,17,-88.2 }, { 30,1,10 }, Blue);
@@ -157,13 +222,12 @@ bool ModuleSceneIntro::Start()
 	CreateCubeMap({ -120,8.6,-235.5 }, { 30,1,10 }, Orange);
 	CreateCubeMap({ -120,8.6,-255.5 }, { 30,1,30 }, Yellow);
 
-	//xd
 	CreateCubeMap({ -30,8.6,-255.5 }, { 10,1,30 }, Green);
 	CreateCubeMap({ -40,8.6,-255.5 }, { 10,1,30 }, Yellow);
 	CreateCubeMap({ -50,8.6,-255.5 }, { 10,1,30 }, Orange);
-	CreateCubeMap({ -60,8.6,-255.5 }, { 10,1,30 },Red);
+	CreateCubeMap({ -60,8.6,-255.5 }, { 10,1,30 }, Red);
 	CreateCubeMap({ -70,8.6,-255.5 }, { 10,1,30 }, Violet);
-	CreateCubeMap({ -80,8.6,-255.5 }, { 10,1,30 },Indigo);
+	CreateCubeMap({ -80,8.6,-255.5 }, { 10,1,30 }, Indigo);
 	CreateCubeMap({ -90,8.6,-255.5 }, { 10,1,30 }, Blue);
 	CreateCubeMap({ -100,8.6,-255.5 }, { 10,1,30 }, Green);
 
@@ -178,33 +242,62 @@ bool ModuleSceneIntro::Start()
 	CreateCubeMap({ 30,8.6,-195.5 }, { 10,1,30 }, Blue);
 	CreateCubeMap({ 40,8.6,-195.5 }, { 10,1,30 }, Indigo);
 	CreateCubeMap({ 50,8.6,-195.5 }, { 10,1,30 }, Violet);
-
-	return ret;
 }
 
-// Load assets
-bool ModuleSceneIntro::CleanUp()
-{
-	LOG("Unloading Intro scene");
+void ModuleSceneIntro::CreateWall() {
+	/*--------------------BackPack--------------------*/
+	//Esquina inferior CreateCubeMap({ 190,8.6,-154 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 190,9.6,-159.5 }, { 30,3,1 }, White);
+	CreateCubeMap({ 205.5,9.6,-149 }, { 1,3,20 }, White);
 
-	return true;
+	//Esquina superior CreateCubeMap({ 190,0,105 }, { 30,1,10 }, Red);
+	CreateCubeMap({ 190,2,110.5 }, { 30,3,1 }, White);
+	CreateCubeMap({ 205.5,2,100 }, { 1,3,20 }, White);
+	/*--------------------BackPack--------------------*/
+	/*--------------------Feet--------------------*/
+	CreateCubeMap({ 130,9.6,-271 }, { 30,3,1 }, White);
+	CreateCubeMap({ 145.5,9.6,-255.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -120,9.6,-271 }, { 30,3,1 }, White);
+	CreateCubeMap({ -135.5,9.6,-255.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ 70,9.6,-271 }, { 30,3,1 }, White);
+	CreateCubeMap({ 54.5,9.6,-255.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ 70,9.6,-180 }, { 30,3,1 }, White);
+	CreateCubeMap({ 85.5,9.6,-195.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -10,9.6,-180 }, { 30,3,1 }, White);
+	CreateCubeMap({ -25.5,9.6,-195.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -10,9.6,-271 }, { 30,3,1 }, White);
+	CreateCubeMap({ 5.5,9.6,-255.5 }, { 1,3,30 }, White);
+	/*--------------------Feet--------------------*/
+	/*--------------------Head--------------------*/
+	CreateCubeMap({ 130,2,170.5 }, { 30,3,1 }, White);
+	CreateCubeMap({ 145.5,2,155 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -120,2,170.5 }, { 30,3,1 }, White);
+	CreateCubeMap({ -135.5,2,155 }, { 1,3,30 }, White);
+	/*--------------------Head--------------------*/
+	/*--------------------Ramp--------------------*/
+	CreateCubeMap({ -120,2,170.5 }, { 30,3,1 }, White);
+	CreateCubeMap({ -135.5,2,155 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -120,9.3,-15 }, { 30,3,1 }, White);
+	CreateCubeMap({ -135.5,9.3,0.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -11.5,17.8,-15 }, { 30,3,1 }, White);
+	CreateCubeMap({ 4,17.8,0.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -11.5,17.8,86 }, { 30,3,1 }, White);
+	CreateCubeMap({ 4,17.8,70.5 }, { 1,3,30 }, White);
+
+	CreateCubeMap({ -120,26.5,86 }, { 30,3,1 }, White);
+	CreateCubeMap({ -135.5,26.5,70.5 }, { 1,3,30 }, White);
+	/*--------------------Ramp--------------------*/
 }
 
-// Update
-update_status ModuleSceneIntro::Update(float dt)
-{
-	Plane p(0, 1, 0, 0);
-	p.axis = true;
-	p.Render();
-
-	for (int i = 0; i < map.cubo.Count(); i++) {
-		map.cubo[i].Render();
-	}
-
-	return UPDATE_CONTINUE;
-}
-
-//Create Cube for the Map
 void ModuleSceneIntro::CreateCubeMap(const vec3 pos, const vec3 dim, Color color) {
 	Cube* a;
 	a = new Cube(dim.x, dim.y, dim.z);
@@ -227,4 +320,3 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle,co
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 }
-
