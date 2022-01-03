@@ -70,6 +70,7 @@ update_status ModuleCamera3D::Update(float dt)
 		Position.x = v->getChassisWorldTransform().getOrigin().getX() - 20 * v->getForwardVector().getX();
 		Position.y = v->getChassisWorldTransform().getOrigin().getY() + 8 * v->getUpAxis();
 		Position.z = v->getChassisWorldTransform().getOrigin().getZ() - 20 * v->getForwardVector().getZ();
+
 		float playerPosX = v->getChassisWorldTransform().getOrigin().getX() + 20 * v->getForwardVector().getX();
 		float playerPosZ = v->getChassisWorldTransform().getOrigin().getZ() + 20 * v->getForwardVector().getZ();
 

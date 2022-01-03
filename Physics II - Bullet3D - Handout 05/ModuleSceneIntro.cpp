@@ -21,7 +21,7 @@ bool ModuleSceneIntro::Start()
 	App->camera->LookAt(vec3(0, 0, 0));
 	CreateRamp({ 0,0,0 }, { 10,1,20 }, 20, {0,0,1}, Blue);
 	CreateCubeMap({ 0,0,0 }, { 10,1,20 }, Blue);
-
+	App->audio->PlayMusic("Assets/BgMusic.ogg",0.0f);
 	CreateCubeMap({ 70,8.6,-195.5 }, { 30,1,30 }, Red);
 	CreateCubeMap({ 70,8.6,-215.5 }, { 30,1,10 }, Orange);
 	CreateCubeMap({ 70,8.6,-225.5 }, { 30,1,10 },Yellow);
