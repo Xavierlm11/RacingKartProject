@@ -167,6 +167,17 @@ update_status ModulePlayer::Update(float dt)
 		//vehicle->SetTransform(&rot);
 		//vehicle->SetPos(0, 2, 0);
 	}
+	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT || a.y < -5)
+	{
+		vehicle->body->setAngularVelocity({ 0,0,0 });
+		vehicle->body->setLinearVelocity({ 0,0,0 });
+		mat4x4 rot;
+		vec3 a = (0, 0, 0);
+
+		vehicle->SetTransform(&rot);
+		vehicle->SetPos(130, 500, 55);
+		rot.rotate(0, a);
+	}
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
