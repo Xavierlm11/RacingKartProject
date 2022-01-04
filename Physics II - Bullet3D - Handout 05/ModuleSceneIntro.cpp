@@ -24,7 +24,7 @@ bool ModuleSceneIntro::Start()
 	//App->audio->PlayMusic("Assets/BgMusic.ogg",0.0f);
 	CreateMap();
 	CreateWall();
-	
+	App->audio->PlayMusic("Assets/Bg6.ogg", 0.0f);
 
 	return ret;
 }

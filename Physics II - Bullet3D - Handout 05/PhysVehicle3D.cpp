@@ -1,7 +1,7 @@
 #include "PhysVehicle3D.h"
 #include "Primitive.h"
 #include "Bullet/include/btBulletDynamicsCommon.h"
-
+#include <time.h>  
 // ----------------------------------------------------------------------------
 VehicleInfo::~VehicleInfo()
 {
@@ -24,9 +24,15 @@ PhysVehicle3D::~PhysVehicle3D()
 void PhysVehicle3D::Render()
 {
 	Cylinder wheel;
+	//srand(time(NULL));
+	
 
-	wheel.color = Black;
+	float uwu = rand() % 254;
+	float owo = rand() % 254;
+	float umu = rand() % 254;
 
+	//wheel.color = Black;
+	wheel.color = {umu / 255, uwu / 255, owo / 255, 0.8f };
 	for(int i = 0; i < vehicle->getNumWheels(); ++i)
 	{
 		wheel.radius = info.wheels[i].radius;
@@ -45,8 +51,8 @@ void PhysVehicle3D::Render()
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
-	chassis.color = Red;
-
+	//chassis.color = Red;
+	chassis.color = { uwu / 255, owo / 255, umu / 255, 0.8f };
 	Cube rear_wing(info.rear_wing_size.x, info.rear_wing_size.y, info.rear_wing_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&rear_wing.transform);
 	btVector3 rw_offset(info.rear_wing_offset.x, info.rear_wing_offset.y, info.rear_wing_offset.z);
@@ -81,8 +87,8 @@ void PhysVehicle3D::Render()
 	person.transform.M[12] += u_offset.getX();
 	person.transform.M[13] += u_offset.getY();
 	person.transform.M[14] += u_offset.getZ();
-	person.color = Carne;
-
+	//person.color = Carne;
+	person.color = { owo / 255, umu / 255, uwu / 255, 0.8f };
 	chassis.Render();
 	/*bridge.Render();
 	front_wing.Render();*/

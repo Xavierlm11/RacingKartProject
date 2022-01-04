@@ -30,13 +30,15 @@ bool ModulePlayer::Start()
 	car.vertical_wing_offset.Set(0.6f, 1.0f, -1.5f);
 	car.person_size.Set(0.9f, 1.3f, 0.7f);
 	car.person_offset.Set(0.0f, 1.0f, -0.5f);
+
+
 	car.mass = 1000.0f;
-	car.suspensionStiffness = 15.88f;
-	car.suspensionCompression = 0.83f;
-	car.suspensionDamping = 0.88f;
+	car.suspensionStiffness = 25.88f;
+	car.suspensionCompression = 1.83f;
+	car.suspensionDamping = 2.88f;
 	car.maxSuspensionTravelCm = 500.0f;
-	car.frictionSlip = 10.5f;
-	car.maxSuspensionForce = 6000.0f;
+	car.frictionSlip = 30.5f;
+	car.maxSuspensionForce = 2000.0f;
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
@@ -109,7 +111,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 4, 0);
+	vehicle->SetPos(130, 4, 50);
 	
 	return true;
 }
@@ -152,7 +154,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 	//else if (vehicle->GetKmh() < 0) acceleration = 700;
 	vec3 a = vehicle->GetPos();
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT /*|| a.y < -5*/ )
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT || a.y < -5 )
 	{	
 		Respow();
 		//vehicle->body->setAngularVelocity({ 0,0,0 });
@@ -166,11 +168,15 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
-
+	mat4x4 rot;
+	rot.rotate(0, {0,0,0});
 	vehicle->Render();
 
+
+
 	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
+	vec3 pos = vehicle->GetPos();
+	sprintf_s(title, "%.1f Km/h, x: %f, y: %f, z: %f", vehicle->GetKmh(),pos.x,pos.y,pos.z);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
@@ -185,6 +191,6 @@ void ModulePlayer::Respow()
 	vec3 a = (0, 0, 0);
 	
 	vehicle->SetTransform(&rot);
-	vehicle->SetPos(0, 4, 0);
+	vehicle->SetPos(130, 4, 55);
 	rot.rotate(0, a);
 }

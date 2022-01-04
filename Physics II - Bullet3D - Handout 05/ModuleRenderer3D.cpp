@@ -68,7 +68,7 @@ bool ModuleRenderer3D::Init()
 		glClearDepth(1.0f);
 		
 		//Initialize clear color
-		glClearColor(0.f, 0.f, 0.f, 1.f);
+		//glClearColor(0.3f, 0.82f, 1.f, 0.8f);
 
 		//Check for error
 		error = glGetError();
@@ -103,7 +103,7 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	srand(time(NULL));
+	//srand(time(NULL));
 
 	return ret;
 }
@@ -112,10 +112,12 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 
-	//int uwu = rand() % 254;
+	float uwu = rand() % 254;
+	float owo = rand() % 254;
+	float umu = rand() % 254;
 	//int uwu=0;
-	//GLfloat LightModelAmbient[] = { uwu, uwu, uwu, 1.0f };
-
+	//GLfloat LightModelAmbient[] = { uwu/255, owo/255, umu/255, 1.0f };
+	glClearColor(uwu / 255, owo / 255, umu / 255, 0.8f);
 	//glClearColor(37, 54, 69, 1.0f);
 	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
 
@@ -127,8 +129,9 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
-
+	
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
+		
 		lights[i].Render();
 
 	return UPDATE_CONTINUE;
