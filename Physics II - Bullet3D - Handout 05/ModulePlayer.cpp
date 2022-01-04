@@ -111,8 +111,9 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(130, 4, 50);
+	vehicle->SetPos(0, 500, 0);
 	clock.Start();
+	state = 0;
 	
 	return true;
 }
@@ -121,7 +122,6 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
-	clock.Stop();
 
 	return true;
 }
@@ -130,54 +130,112 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
+	char title[80];
+	vec3 pos = vehicle->GetPos();
+	uint miliseconds = clock.Read() % 1000;
+	uint seconds = (clock.Read() / 1000) % 60;
+	uint minutes = (clock.Read() / 1000) / 60;
+	switch (state) {
+	case 0:
+		sprintf_s(title, "AMONG US RACING GAME SUUUUUUUUS");
+		App->window->SetTitle(title);
+		if (seconds > 7) {
+			Respow();
+			state = 1;
+			clock.Stop();
+			clock.Start();
+		}
+		break;
+	case 1:
+		sprintf_s(title, "READY!");
+		App->window->SetTitle(title);
+		if (seconds > 2) {
+			state = 2;
+			clock.Stop();
+			clock.Start();
+		}
+		break;
+	case 2:
+		sprintf_s(title, "STADY!");
+		App->window->SetTitle(title);
+		if (seconds > 2) {
+			state = 3;
+			clock.Stop();
+			clock.Start();
+		}
+		break;
+	case 3:
+		if (seconds > 2) {
+			sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(),pos.x,pos.y,pos.z);
+			App->window->SetTitle(title);
+		}
+		if (seconds < 2) {
+			sprintf_s(title, "GO!");
+			App->window->SetTitle(title);
+		}
+		if (seconds > 30) {
+			state = 5;
+			clock.Stop();
+		}
 
-	if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-	{
-		acceleration = MAX_ACCELERATION*6;
-	}
-	//else if (vehicle->GetKmh() > 0) acceleration = -2200;
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION * 6;
+		}
+		//else if (vehicle->GetKmh() > 0) acceleration = -2200;
 
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+		{
+			if (turn < TURN_DEGREES)
+				turn += TURN_DEGREES;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
-	}
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+			if (turn > -TURN_DEGREES)
+				turn -= TURN_DEGREES;
+		}
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-	{
-		//brake = BRAKE_POWER;
-		acceleration = BACKING*6;
-	}
-	//else if (vehicle->GetKmh() < 0) acceleration = 700;
-	vec3 a = vehicle->GetPos();
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT || a.y < -25 )
-	{	
-		Respow();
-		//vehicle->body->setAngularVelocity({ 0,0,0 });
-		//vehicle->body->setLinearVelocity({ 0,0,0 });
-		//mat4x4 rot;
-		//vec3 a = (0, 0, 0);
-		////rot.rotate(0, a);
-		//vehicle->SetTransform(&rot);
-		//vehicle->SetPos(0, 2, 0);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT )
-	{
-		vehicle->body->setAngularVelocity({ 0,0,0 });
-		vehicle->body->setLinearVelocity({ 0,0,0 });
-		mat4x4 rot;
-		vec3 a = (0, 0, 0);
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		{
+			//brake = BRAKE_POWER;
+			acceleration = BACKING * 6;
+		}
+		//else if (vehicle->GetKmh() < 0) acceleration = 700;
+		{vec3 a = vehicle->GetPos();
+		if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT || a.y < -25)
+		{
+			Respow();
+			//vehicle->body->setAngularVelocity({ 0,0,0 });
+			//vehicle->body->setLinearVelocity({ 0,0,0 });
+			//mat4x4 rot;
+			//vec3 a = (0, 0, 0);
+			////rot.rotate(0, a);
+			//vehicle->SetTransform(&rot);
+			//vehicle->SetPos(0, 2, 0);
+		}
+		if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT)
+		{
+			vehicle->body->setAngularVelocity({ 0,0,0 });
+			vehicle->body->setLinearVelocity({ 0,0,0 });
+			mat4x4 rot;
+			vec3 a = (0, 0, 0);
 
-		vehicle->SetTransform(&rot);
-		vehicle->SetPos(130, 500, 55);
-		rot.rotate(0, a);
+			vehicle->SetTransform(&rot);
+			vehicle->SetPos(130, 500, 55);
+			rot.rotate(0, a);
+		}
+		}
+		break;
+	case 5:
+		sprintf_s(title, "TIME OUT");
+		App->window->SetTitle(title);
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_REPEAT) {
+			state = 0;
+		}
+		break;
 	}
+	
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
@@ -187,13 +245,13 @@ update_status ModulePlayer::Update(float dt)
 
 
 
-	char title[80];
+	/*char title[80];
 	vec3 pos = vehicle->GetPos();
 	uint miliseconds = clock.Read() % 1000;
 	uint seconds = (clock.Read() / 1000) % 60;
 	uint minutes = (clock.Read() / 1000) / 60;
 	sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(),pos.x,pos.y,pos.z);
-	App->window->SetTitle(title);
+	App->window->SetTitle(title);*/
 
 	return UPDATE_CONTINUE;
 }

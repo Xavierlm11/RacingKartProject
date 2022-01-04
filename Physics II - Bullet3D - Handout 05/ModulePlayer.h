@@ -27,6 +27,7 @@ public:
 
 	PhysVehicle3D* vehicle;
 	Timer clock;
+	int state;
 	float turn;
 	float acceleration;
 	float brake;
