@@ -152,11 +152,11 @@ update_status ModulePlayer::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 	{
 		//brake = BRAKE_POWER;
-		acceleration = BACKING*3;
+		acceleration = BACKING*6;
 	}
 	//else if (vehicle->GetKmh() < 0) acceleration = 700;
 	vec3 a = vehicle->GetPos();
-	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT || a.y < -5 )
+	if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT || a.y < -25 )
 	{	
 		Respow();
 		//vehicle->body->setAngularVelocity({ 0,0,0 });
@@ -167,7 +167,7 @@ update_status ModulePlayer::Update(float dt)
 		//vehicle->SetTransform(&rot);
 		//vehicle->SetPos(0, 2, 0);
 	}
-	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT || a.y < -5)
+	if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT )
 	{
 		vehicle->body->setAngularVelocity({ 0,0,0 });
 		vehicle->body->setLinearVelocity({ 0,0,0 });
