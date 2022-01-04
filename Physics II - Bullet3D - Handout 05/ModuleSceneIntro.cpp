@@ -24,8 +24,10 @@ bool ModuleSceneIntro::Start()
 	//App->audio->PlayMusic("Assets/BgMusic.ogg",0.0f);
 	CreateMap();
 	CreateWall();
-	App->audio->PlayMusic("Assets/Bg6.ogg", 0.0f);
-
+	int uwu = rand() % 2;
+	if(uwu == 0) App->audio->PlayMusic("Assets/Bg6.ogg", 0.0f);
+	if(uwu == 1) App->audio->PlayMusic("Assets/Bg8.ogg", 0.0f);
+	LOG("%d",uwu);
 	return ret;
 }
 
