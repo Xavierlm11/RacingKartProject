@@ -165,15 +165,15 @@ update_status ModulePlayer::Update(float dt)
 		}
 		break;
 	case 3:
-		if (seconds > 2) {
-			sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(),pos.x,pos.y,pos.z);
-			App->window->SetTitle(title);
-		}
-		if (seconds < 2) {
+		if (minutes == 0 && seconds < 2) {
 			sprintf_s(title, "GO!");
 			App->window->SetTitle(title);
 		}
-		if (seconds > 30) {
+		else {
+			sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(), pos.x, pos.y, pos.z);
+			App->window->SetTitle(title);
+		}
+		if (minutes >= 3) {
 			state = 5;
 			clock.Stop();
 		}
