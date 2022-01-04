@@ -112,6 +112,7 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(130, 4, 50);
+	clock.Start();
 	
 	return true;
 }
@@ -120,6 +121,7 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
+	clock.Stop();
 
 	return true;
 }
@@ -176,7 +178,10 @@ update_status ModulePlayer::Update(float dt)
 
 	char title[80];
 	vec3 pos = vehicle->GetPos();
-	sprintf_s(title, "%.1f Km/h, x: %f, y: %f, z: %f", vehicle->GetKmh(),pos.x,pos.y,pos.z);
+	uint miliseconds = clock.Read() % 1000;
+	uint seconds = (clock.Read() / 1000) % 60;
+	uint minutes = (clock.Read() / 1000) / 60;
+	sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(),pos.x,pos.y,pos.z);
 	App->window->SetTitle(title);
 
 	return UPDATE_CONTINUE;
