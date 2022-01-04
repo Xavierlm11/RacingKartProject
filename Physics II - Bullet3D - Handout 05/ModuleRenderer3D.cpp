@@ -68,7 +68,7 @@ bool ModuleRenderer3D::Init()
 		glClearDepth(1.0f);
 		
 		//Initialize clear color
-		//glClearColor(0.3f, 0.82f, 1.f, 0.8f);
+		glClearColor(0.3f, 0.82f, 1.f, 0.8f);
 
 		//Check for error
 		error = glGetError();
@@ -117,7 +117,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	float umu = rand() % 254;
 	//int uwu=0;
 	//GLfloat LightModelAmbient[] = { uwu/255, owo/255, umu/255, 1.0f };
-	glClearColor(uwu / 255, owo / 255, umu / 255, 0.8f);
+	//glClearColor(uwu / 255, owo / 255, umu / 255, 0.8f);
 	//glClearColor(37, 54, 69, 1.0f);
 	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
 
