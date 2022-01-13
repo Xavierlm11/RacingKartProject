@@ -322,3 +322,12 @@ void ModuleSceneIntro::CreateRamp(const vec3 pos, const vec3 dim, float angle,co
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
 }
+
+void ModuleSceneIntro::CreateCheckMap(const vec3 pos, const vec3 dim, Color color) {
+	Cube* a;
+	a = new Cube(dim.x, dim.y, dim.z);
+	a->color = color;
+	a->SetPos(pos.x, pos.y, pos.z);
+	map.cubo.PushBack(*a);
+	//map.cubo3d.PushBack(App->physics->AddBody(*a, 0.0f));
+}

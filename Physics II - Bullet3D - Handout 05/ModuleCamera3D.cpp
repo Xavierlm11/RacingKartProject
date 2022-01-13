@@ -65,7 +65,7 @@ update_status ModuleCamera3D::Update(float dt)
 	v = App->player->vehicle->vehicle;
 	//vehicle.getForwardVector();
 	
-	if (click==false)
+	if (App->player->state==0)
 	{
 		Position.x = v->getChassisWorldTransform().getOrigin().getX() - 20 * v->getForwardVector().getX();
 		Position.y = v->getChassisWorldTransform().getOrigin().getY() + 8 * v->getUpAxis();
@@ -75,6 +75,18 @@ update_status ModuleCamera3D::Update(float dt)
 		float playerPosZ = v->getChassisWorldTransform().getOrigin().getZ() + 20 * v->getForwardVector().getZ();
 
 		LookAt(vec3(playerPosX, 1, playerPosZ));
+	}
+	if (click == false && App->player->state != 0)
+	{
+		Position.x = v->getChassisWorldTransform().getOrigin().getX() - 20 * v->getForwardVector().getX();
+		Position.y = v->getChassisWorldTransform().getOrigin().getY() + 8 * v->getUpAxis();
+		Position.z = v->getChassisWorldTransform().getOrigin().getZ() - 20 * v->getForwardVector().getZ();
+
+		float playerPosX = v->getChassisWorldTransform().getOrigin().getX() + 20 * v->getForwardVector().getX();
+		float playerPosY = v->getChassisWorldTransform().getOrigin().getY() /*+ 20 * v->getForwardVector().getY()*/;
+		float playerPosZ = v->getChassisWorldTransform().getOrigin().getZ() + 20 * v->getForwardVector().getZ();
+
+		LookAt(vec3(playerPosX, playerPosY, playerPosZ));
 	}
 	// Mouse motion ----------------
 	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP) click = false;

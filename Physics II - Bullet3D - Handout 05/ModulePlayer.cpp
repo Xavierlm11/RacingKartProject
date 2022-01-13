@@ -111,7 +111,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
-	vehicle->SetPos(0, 500, 0);
+	vehicle->SetPos(0, 530, -25);
 	clock.Start();
 	state = 0;
 	

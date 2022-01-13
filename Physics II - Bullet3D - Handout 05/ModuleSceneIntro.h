@@ -33,6 +33,8 @@ public:
 
 	void CreateCubeMap(const vec3 pos, const vec3 dim, Color color);
 	void CreateRamp(const vec3 pos, const vec3 dim, float angle, const vec3& orient, Color color);
+	void CreateCheckMap(const vec3 pos, const vec3 dim, Color color);
+
 
 public:
 	/*
