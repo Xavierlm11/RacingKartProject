@@ -14,7 +14,7 @@ struct PhysVehicle3D;
 class Atmosphere
 {
 public:
-	float wind = 100;
+	float wind = 1;
 
 	float density = 0.225;
 };
