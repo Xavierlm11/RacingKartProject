@@ -293,6 +293,10 @@ void ModuleSceneIntro::CreateMap() {
 	CreateCubeMap({ 30,8.6,-195.5 }, { 10,1,30 }, Blue);
 	CreateCubeMap({ 40,8.6,-195.5 }, { 10,1,30 }, Indigo);
 	CreateCubeMap({ 50,8.6,-195.5 }, { 10,1,30 }, Violet);
+
+	CreateCubeMap({ 148,0,-35 }, { 1,30,1 }, Violet);
+	CreateCubeMap({ 113,0,-35 }, { 1,30,1 }, Violet);
+	CreateCubeMap({ 130,15,-35 }, { 40,5,1 }, Violet);
 }
 
 void ModuleSceneIntro::CreateWall() {

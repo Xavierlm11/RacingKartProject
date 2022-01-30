@@ -117,7 +117,7 @@ bool ModulePlayer::Start()
 	state = 0;
 	lap = 1;
 
-	
+	Mix_VolumeMusic(30);
 	return true;
 }
 
