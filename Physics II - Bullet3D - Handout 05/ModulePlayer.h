@@ -11,6 +11,14 @@ struct PhysVehicle3D;
 #define BRAKE_POWER 1000.0f
 #define BACKING -700.0f
 
+class Atmosphere
+{
+public:
+	float wind = 100;
+
+	float density = 0.225;
+};
+
 class ModulePlayer : public Module
 {
 public:
@@ -21,11 +29,15 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void DragForce();
+	void LiftForce();
+
 	void Respow();
 
 public:
 
 	PhysVehicle3D* vehicle;
+	Atmosphere atmosphere;
 	Timer clock;
 	int state;
 	float turn;

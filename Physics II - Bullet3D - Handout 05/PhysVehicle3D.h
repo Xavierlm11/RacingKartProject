@@ -61,4 +61,9 @@ public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+
+	// Aerodynamics stuff
+	double surface; // Effective wet surface
+	double cl = 3; // Lift coefficient
+	double cd = 3; // Drag coefficient
 };

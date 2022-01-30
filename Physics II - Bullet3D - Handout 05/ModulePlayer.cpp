@@ -111,6 +111,7 @@ bool ModulePlayer::Start()
 	car.wheels[3].steering = false;
 
 	vehicle = App->physics->AddVehicle(car);
+	vehicle->surface = (car.chassis_size.x * car.chassis_size.y * car.chassis_size.z) * 0.5;
 	vehicle->SetPos(0, 530, -25);
 	clock.Start();
 	state = 0;
@@ -236,6 +237,8 @@ update_status ModulePlayer::Update(float dt)
 		break;
 	}
 	
+	DragForce();
+	LiftForce();
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
@@ -267,4 +270,20 @@ void ModulePlayer::Respow()
 	vehicle->SetTransform(&rot);
 	vehicle->SetPos(130, 4, 55);
 	rot.rotate(0, a);
+}
+
+void ModulePlayer::DragForce() {
+	float vel = vehicle->GetKmh() * 0.2778; //en m/s
+	float speed = vel - atmosphere.wind;
+	double fdrag = 0.5 * atmosphere.density * speed * speed * vehicle->surface * vehicle->cd;
+	double fd = (-speed) * fdrag;
+	acceleration += fd;
+}
+
+void ModulePlayer::LiftForce() {
+	float vel = vehicle->GetKmh() * 0.2778; //en m/s
+	float speed = vel - atmosphere.wind;
+	double flift = 0.5 * atmosphere.density * speed * speed * vehicle->surface * vehicle->cl;
+	double fl = speed * flift;
+	acceleration += fl;
 }
