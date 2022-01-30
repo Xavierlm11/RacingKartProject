@@ -28,27 +28,30 @@ bool ModuleSceneIntro::Start()
 	if(uwu == 1) App->audio->PlayMusic("Assets/Bg8.ogg", 0.0f);
 	LOG("%d",uwu);
 
-	Cube* bodyA;
-	bodyA = new Cube(1, 10, 1);
-	bodyA->SetPos(113.5, 5, 70);
-	/*bodyA->body.body->applyForce({ 0,1,0 }, {0,10,0});*/
+	
 
-	Cube* bodyB;
-	bodyB = new Cube(10, 10, 5);
-	bodyB->SetPos(130, 5, 70);
+	
 
-	PhysBody3D* bodyA2 = App->physics->AddBody(*bodyA, 1);
-	PhysBody3D* bodyB2 = App->physics->AddBody(*bodyB, 1);
+	/*physs.PushBack(bodyA);*/
 
-	App->physics->AddConstraintHinge(*bodyA2, *bodyB2, vec3(8, 0, 8), vec3(0, 0, 0), vec3(0, 1, 0), vec3(0, 1, 0), false);
+	//physs.PushBack(bodyA);
+	//physs.PushBack(bodyB);
 
 	//aaaaaaaaaaaa
-	CreateCubeMap({ 113.5,5,69 }, { 1,1,1 }, White);
-	CreateCubeMap({ 113.5,5,71 }, { 1,1,1 }, White);
-	CreateCubeMap({ 112.5,5,70 }, { 1,1,3 }, White);
-	CreateCubeMap({ 114.5,5,70 }, { 1,1,3 }, White);
+	CreateCubeMap({ 113.5,5.5,69 }, { 1,10,1 }, White);
+	CreateCubeMap({ 113.5,5.5,71 }, { 1,10,1 }, White);
+	CreateCubeMap({ 112.5,5.5,70 }, { 1,10,3 }, White);
+	CreateCubeMap({ 114.5,5.5,70 }, { 1,10,3 }, White);
 	CreateCubeMap({ 113.5,0,70 }, { 3,1,3 }, White);
 	CreateCubeMap({ 113.5,11,70 }, { 3,1,3 }, White);
+
+	//CreateCubeMap({ 143.5,5.5,69 }, { 1,10,1 }, White);
+	//CreateCubeMap({ 143.5,5.5,71 }, { 1,10,1 }, White);
+	//CreateCubeMap({ 142.5,5.5,70 }, { 1,10,3 }, White);
+	//CreateCubeMap({ 144.5,5.5,70 }, { 1,10,3 }, White);
+	//CreateCubeMap({ 143.5,0,70 }, { 3,1,3 }, White);
+	//CreateCubeMap({ 143.5,11,70 }, { 3,1,3 }, White);
+
 	return ret;
 }
 
@@ -67,6 +70,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();*/
 
+
 	for (int i = 0; i < map.cubo.Count(); i++) {
 		map.cubo[i].Render();
 	}
@@ -75,6 +79,30 @@ update_status ModuleSceneIntro::Update(float dt)
 }
 
 void ModuleSceneIntro::CreateMap() {
+
+	bodyA = new Cube(1, 10, 1);
+	bodyA->SetPos(113.5, 5, 70);
+
+	bodyB = new Cube(20, 10, 5);
+	bodyB->SetPos(130.5, 5, 70);
+
+	PhysBody3D* bodyA2 = App->physics->AddBody(*bodyA, 1);
+	PhysBody3D* bodyB2 = App->physics->AddBody(*bodyB, 1);
+	//bodyB->body.body->applyCentralForce({ 0,0.1,0 });
+
+	App->physics->AddConstraintHinge(*bodyA2, *bodyB2, vec3(15, 0, 0), vec3(0, 0, 0), vec3(0, 1, 0), vec3(0, 1, 0), false);
+
+	/*bodyC = new Cube(1, 10, 1);
+	bodyC->SetPos(143.5, 5, 70);
+
+	bodyD = new Cube(10, 10, 5);
+	bodyD->SetPos(120, 5, 70);
+
+	PhysBody3D* bodyC2 = App->physics->AddBody(*bodyC, 1);
+	PhysBody3D* bodyD2 = App->physics->AddBody(*bodyD, 1);
+
+	App->physics->AddConstraintHinge(*bodyC2, *bodyD2, vec3(8, 0, 8), vec3(0, 0, 0), vec3(0, 1, 0), vec3(0, 1, 0), false);*/
+
 
 	/*--------------------BackPack--------------------*/
 	CreateCubeMap({ 150,8.6,-154 }, { 10,1,10 }, Blue);

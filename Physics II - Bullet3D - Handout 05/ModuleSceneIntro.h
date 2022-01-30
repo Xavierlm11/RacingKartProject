@@ -46,7 +46,8 @@ public:
 	*/
 
 	p2DynArray<Cube*> ehetenandayo;
-	p2DynArray<Primitive*>	primitives;
+	p2DynArray<PhysBody3D*>	physs;
+	p2DynArray<Cube> constre;
 
 	Map map;
 	PhysBody3D* pb_chassis;
@@ -60,4 +61,10 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
+	Cube* bodyA;
+	Cube* bodyB;
+	/*Cube* bodyC;
+	Cube* bodyD;*/
+
 };
