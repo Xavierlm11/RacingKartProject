@@ -118,6 +118,9 @@ bool ModulePlayer::Start()
 	lap = 1;
 
 	Mix_VolumeMusic(30);
+
+	EnterFx = app->audio->LoadFx("Assets/audio/fx/EnterFx.wav")
+
 	return true;
 }
 
