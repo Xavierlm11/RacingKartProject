@@ -119,7 +119,7 @@ bool ModulePlayer::Start()
 
 	Mix_VolumeMusic(30);
 
-	EnterFx = app->audio->LoadFx("Assets/audio/fx/EnterFx.wav")
+	EnterFx = App->audio->LoadFx("Assets/EnterFx.wav");
 
 	return true;
 }
@@ -174,6 +174,7 @@ update_status ModulePlayer::Update(float dt)
 		if (minutes == 0 && seconds < 2) {
 			sprintf_s(title, "GO!");
 			App->window->SetTitle(title);
+			App->audio->PlayFx(EnterFx, 0);
 		}
 		else {
 			sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(), pos.x, pos.y, pos.z);
@@ -189,6 +190,7 @@ update_status ModulePlayer::Update(float dt)
 			if (limit == false) {
 				LOG("Lap %d complete", lap)
 				lap += 1;
+				App->audio->PlayFx(EnterFx, 0);
 				limit = true;
 			}
 		}
