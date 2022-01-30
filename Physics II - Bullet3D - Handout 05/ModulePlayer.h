@@ -39,6 +39,7 @@ public:
 	PhysVehicle3D* vehicle;
 	Atmosphere atmosphere;
 	Timer clock;
+	bool limit = false;
 	int state;
 	int lap;
 	float turn;

@@ -115,7 +115,7 @@ bool ModulePlayer::Start()
 	vehicle->SetPos(0, 530, -25);
 	clock.Start();
 	state = 0;
-	lap = 0;
+	lap = 1;
 
 	
 	return true;
@@ -181,17 +181,24 @@ update_status ModulePlayer::Update(float dt)
 			clock.Stop();
 		}
 
-		{vec3 goal = (130, 4, 90), pos = vehicle->GetPos();
-		if (lap < 3 && pos.z == goal.z && (goal.x - 15 < pos.x < goal.x + 15))
+		if (pos.z > -35 && pos.z < -34 && pos.x > 115 && pos.x < 205)
 		{
-			lap += 1;
+			if (limit == false) {
+				LOG("Lap %d complete", lap)
+				lap += 1;
+				limit = true;
+			}
 		}
-		if (lap > 3 && pos.y == goal.y && (goal.x - 15 < pos.x < goal.x + 15))
+		if (lap > 3) //lap + 1
 		{
 			state = 6;
 			clock.Stop();
 		}
+
+		if (pos.z > 55) {
+			limit = false;
 		}
+
 		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 		{
 			acceleration = MAX_ACCELERATION * 6;
