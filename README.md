@@ -2,7 +2,7 @@
 The Best racing game
 
 ### Link to the Github project:
-https://github.com/Dani-24/SDL_Platformer
+https://github.com/Xavierlm11/RacingKartProject
 
 ## The incredible members of the incredible team
 
