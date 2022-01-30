@@ -12,7 +12,7 @@ https://github.com/Xavierlm11/RacingKartProject
 
 
 ## Description
-In this game you will have the honor of drive with your super amazing car down the INCREDIBLE RAINBOW SUS circuit (4k no fake).
+In this game you will have the honor of drive with your super amazing kart down the INCREDIBLE RAINBOW SUS circuit (4k no fake).
 You will have to complete 3 laps in less than 3 minutes, will you be able?
 
 ## Controls
