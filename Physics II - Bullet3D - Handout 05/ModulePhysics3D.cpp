@@ -438,3 +438,15 @@ int	 DebugDrawer::getDebugMode() const
 {
 	return mode;
 }
+
+void ModulePhysics3D::AddConstraintSlider(PhysBody3D& bodyA,PhysBody3D& bodyB, btTransform& frameinA, btTransform& frameinB)
+{
+	/*btSliderConstraint* constraint = new btSliderConstraint(
+		*bodyA.body.GetBody(),
+		*bodyB.body.GetBody(),
+		frameinA,
+		frameinB,
+		true);
+	world->addConstraint(constraint);
+	constraints.add((btTypedConstraint*)constraint);*/
+}

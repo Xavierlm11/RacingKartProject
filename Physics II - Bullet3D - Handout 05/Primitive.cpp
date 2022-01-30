@@ -105,9 +105,15 @@ Cube::Cube() : Primitive(), size(1.0f, 1.0f, 1.0f)
 	type = PrimitiveTypes::Primitive_Cube;
 }
 
+
 Cube::Cube(float sizeX, float sizeY, float sizeZ) : Primitive(), size(sizeX, sizeY, sizeZ)
 {
 	type = PrimitiveTypes::Primitive_Cube;
+}
+
+vec3 Cube::GetSize() const
+{
+	return size;
 }
 
 void Cube::InnerRender() const

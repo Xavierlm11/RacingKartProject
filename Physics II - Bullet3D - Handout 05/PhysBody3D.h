@@ -11,6 +11,7 @@ struct PhysBody3D
 {
 	friend class ModulePhysics3D;
 public:
+	PhysBody3D();
 	PhysBody3D(btRigidBody* body);
 	~PhysBody3D();
 
@@ -18,12 +19,11 @@ public:
 	void GetTransform(float* matrix) const;
 	void SetTransform(const float* matrix) const;
 	void SetPos(float x, float y, float z);
-
+	btRigidBody* GetBody() const;
 	const vec3 GetPos() const;
 
 	btRigidBody* body = nullptr;
 private:
-	
 
 public:
 	p2List<Module*> collision_listeners;

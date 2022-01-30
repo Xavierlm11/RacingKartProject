@@ -34,7 +34,7 @@ public:
 	void CreateCubeMap(const vec3 pos, const vec3 dim, Color color);
 	void CreateRamp(const vec3 pos, const vec3 dim, float angle, const vec3& orient, Color color);
 	void CreateCheckMap(const vec3 pos, const vec3 dim, Color color);
-
+	void CreateConst(vec3 pos, Color color);
 
 public:
 	/*
@@ -44,6 +44,9 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
+
+	p2DynArray<Cube*> ehetenandayo;
+	p2DynArray<Primitive*>	primitives;
 
 	Map map;
 	PhysBody3D* pb_chassis;

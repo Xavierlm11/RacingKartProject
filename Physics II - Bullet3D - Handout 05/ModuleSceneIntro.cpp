@@ -5,8 +5,7 @@
 #include "PhysBody3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
-{
-}
+{}
 
 ModuleSceneIntro::~ModuleSceneIntro()
 {}
@@ -28,6 +27,28 @@ bool ModuleSceneIntro::Start()
 	if(uwu == 0) App->audio->PlayMusic("Assets/Bg6.ogg", 0.0f);
 	if(uwu == 1) App->audio->PlayMusic("Assets/Bg8.ogg", 0.0f);
 	LOG("%d",uwu);
+
+	Cube* bodyA;
+	bodyA = new Cube(1, 10, 1);
+	bodyA->SetPos(113.5, 5, 70);
+	/*bodyA->body.body->applyForce({ 0,1,0 }, {0,10,0});*/
+
+	Cube* bodyB;
+	bodyB = new Cube(10, 10, 5);
+	bodyB->SetPos(130, 5, 70);
+
+	PhysBody3D* bodyA2 = App->physics->AddBody(*bodyA, 1);
+	PhysBody3D* bodyB2 = App->physics->AddBody(*bodyB, 1);
+
+	App->physics->AddConstraintHinge(*bodyA2, *bodyB2, vec3(8, 0, 8), vec3(0, 0, 0), vec3(0, 1, 0), vec3(0, 1, 0), false);
+
+	//aaaaaaaaaaaa
+	CreateCubeMap({ 113.5,5,69 }, { 1,1,1 }, White);
+	CreateCubeMap({ 113.5,5,71 }, { 1,1,1 }, White);
+	CreateCubeMap({ 112.5,5,70 }, { 1,1,3 }, White);
+	CreateCubeMap({ 114.5,5,70 }, { 1,1,3 }, White);
+	CreateCubeMap({ 113.5,0,70 }, { 3,1,3 }, White);
+	CreateCubeMap({ 113.5,11,70 }, { 3,1,3 }, White);
 	return ret;
 }
 
@@ -49,7 +70,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	for (int i = 0; i < map.cubo.Count(); i++) {
 		map.cubo[i].Render();
 	}
-
+	
 	return UPDATE_CONTINUE;
 }
 
@@ -247,7 +268,7 @@ void ModuleSceneIntro::CreateMap() {
 }
 
 void ModuleSceneIntro::CreateWall() {
-	/*--------------------BackPack--------------------*/
+	/*------------------BackPack------------------*/
 	//Esquina inferior CreateCubeMap({ 190,8.6,-154 }, { 30,1,10 }, Red);
 	CreateCubeMap({ 190,9.6,-159.5 }, { 30,3,1 }, White);
 	CreateCubeMap({ 205.5,9.6,-149 }, { 1,3,20 }, White);
@@ -255,7 +276,7 @@ void ModuleSceneIntro::CreateWall() {
 	//Esquina superior CreateCubeMap({ 190,0,105 }, { 30,1,10 }, Red);
 	CreateCubeMap({ 190,2,110.5 }, { 30,3,1 }, White);
 	CreateCubeMap({ 205.5,2,100 }, { 1,3,20 }, White);
-	/*--------------------BackPack--------------------*/
+	/*------------------BackPack------------------*/
 	/*--------------------Feet--------------------*/
 	CreateCubeMap({ 130,9.6,-271 }, { 30,3,1 }, White);
 	CreateCubeMap({ 145.5,9.6,-255.5 }, { 1,3,30 }, White);
@@ -298,6 +319,12 @@ void ModuleSceneIntro::CreateWall() {
 	CreateCubeMap({ -120,26.5,86 }, { 30,3,1 }, White);
 	CreateCubeMap({ -135.5,26.5,70.5 }, { 1,3,30 }, White);
 	/*--------------------Ramp--------------------*/
+
+	//CreateConst({ -18.7, 4, -109.5 }, Blue);
+	//CreateConst({ 18.7, 4, -109.5 }, Blue);
+
+
+	
 }
 
 void ModuleSceneIntro::CreateCubeMap(const vec3 pos, const vec3 dim, Color color) {
@@ -331,3 +358,42 @@ void ModuleSceneIntro::CreateCheckMap(const vec3 pos, const vec3 dim, Color colo
 	map.cubo.PushBack(*a);
 	//map.cubo3d.PushBack(App->physics->AddBody(*a, 0.0f));
 }
+
+//void ModuleSceneIntro::CreateConst(vec3 pos, Color color) {
+//	Cube* bodyA;
+//	bodyA = new Cube(5, 10, 5);
+//	bodyA->SetPos(pos.x, 1.5, pos.z);
+//	bodyA->color = color;
+//
+//	Cube* bodyB;
+//	bodyB = new Cube(5, 10, 5);
+//	bodyB->SetPos(pos.x, -0.2, pos.z);
+//	bodyB->color = color;
+//
+//	btTransform frameInA;
+//	frameInA.getBasis().setEulerZYX(0, 0, M_PI / 2);
+//	frameInA.setOrigin(btVector3(0, 0, 0));
+//
+//	btTransform frameInB;
+//	frameInB.getBasis().setEulerZYX(0, 0, M_PI / 2);
+//	frameInB.setOrigin(btVector3(0, 0, 0));
+//
+//	PhysBody3D* bodyA2 = App->physics->AddBody(*bodyA, 1);
+//	PhysBody3D* bodyB2 = App->physics->AddBody(*bodyB, 1);
+//
+//	App->physics->AddConstraintSlider(*bodyA2, *bodyB2, frameInA, frameInB);
+//
+//	/*Cube* bodyA;
+//	bodyA = new Cube(5, 10, 5);
+//	bodyA->SetPos(135, 1, 1);
+//
+//	Cube* bodyB;
+//	bodyB = new Cube(5, 10, 5);
+//	bodyB->SetPos(130, 1, 1);
+//
+//	PhysBody3D* bodyA2 = App->physics->AddBody(*bodyA, 1);
+//	PhysBody3D* bodyB2 = App->physics->AddBody(*bodyB, 1);
+//
+//	App->physics->AddConstraintHinge(*bodyA2, *bodyB2, vec3(10, 0, 0), vec3(0, 0, 0), vec3(0, 1, 0), vec3(0, 1, 0), false);*/
+//	
+//}

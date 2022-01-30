@@ -6,6 +6,10 @@
 PhysBody3D::PhysBody3D(btRigidBody* body) : body(body)
 {}
 
+PhysBody3D::PhysBody3D()
+	: body(nullptr)
+	, collision_listeners()
+{}
 // ---------------------------------------------------------
 PhysBody3D::~PhysBody3D()
 {
@@ -54,4 +58,9 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	btTransform t = body->getWorldTransform();
 	t.setOrigin(btVector3(x, y, z));
 	body->setWorldTransform(t);
+}
+
+btRigidBody* PhysBody3D::GetBody() const
+{
+	return body;
 }
