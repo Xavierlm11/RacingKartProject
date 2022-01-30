@@ -115,6 +115,8 @@ bool ModulePlayer::Start()
 	vehicle->SetPos(0, 530, -25);
 	clock.Start();
 	state = 0;
+	lap = 1;
+
 	
 	return true;
 }
@@ -179,6 +181,24 @@ update_status ModulePlayer::Update(float dt)
 			clock.Stop();
 		}
 
+		if (pos.z > -35 && pos.z < -34 && pos.x > 115 && pos.x < 205)
+		{
+			if (limit == false) {
+				LOG("Lap %d complete", lap)
+				lap += 1;
+				limit = true;
+			}
+		}
+		if (lap > 3) //lap + 1
+		{
+			state = 6;
+			clock.Stop();
+		}
+
+		if (pos.z > 55) {
+			limit = false;
+		}
+
 		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
 		{
 			acceleration = MAX_ACCELERATION * 6;
@@ -235,7 +255,15 @@ update_status ModulePlayer::Update(float dt)
 			state = 0;
 		}
 		break;
+	case 6:
+		sprintf_s(title, "CONGRATULATIONS, YOU WIN");
+		App->window->SetTitle(title);
+		if (App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_REPEAT) {
+			state = 0;
+		}
+		break;
 	}
+	
 	
 	DragForce();
 	LiftForce();
@@ -245,8 +273,7 @@ update_status ModulePlayer::Update(float dt)
 	mat4x4 rot;
 	rot.rotate(0, {0,0,0});
 	vehicle->Render();
-
-
+	
 
 	/*char title[80];
 	vec3 pos = vehicle->GetPos();
@@ -256,6 +283,7 @@ update_status ModulePlayer::Update(float dt)
 	sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(),pos.x,pos.y,pos.z);
 	App->window->SetTitle(title);*/
 
+	//130, 4, 90
 	return UPDATE_CONTINUE;
 }
 
