@@ -40,6 +40,7 @@ public:
 	Atmosphere atmosphere;
 	Timer clock;
 	int state;
+	int lap;
 	float turn;
 	float acceleration;
 	float brake;
