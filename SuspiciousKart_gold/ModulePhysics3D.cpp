@@ -303,7 +303,7 @@ PhysVehicle3D* ModulePhysics3D::AddVehicle(const VehicleInfo& info)
 	front_wing_trans.setOrigin(btVector3(info.front_wing_offset.x, info.front_wing_offset.y, info.front_wing_offset.z));
 	comShape->addChildShape(front_wing_trans, frontWingShape);*/
 
-	btCollisionShape* rearWingShape = new btBoxShape(btVector3(info.rear_wing_size.x * 0.5f, info.rear_wing_size.y * 0.5f, info.rear_wing_size.z * 0.5f));
+	/*btCollisionShape* rearWingShape = new btBoxShape(btVector3(info.rear_wing_size.x * 0.5f, info.rear_wing_size.y * 0.5f, info.rear_wing_size.z * 0.5f));
 	shapes.add(rearWingShape);
 	btTransform rear_wing_trans;
 	rear_wing_trans.setIdentity();
@@ -315,21 +315,21 @@ PhysVehicle3D* ModulePhysics3D::AddVehicle(const VehicleInfo& info)
 	btTransform left_wing_trans;
 	left_wing_trans.setIdentity();
 	left_wing_trans.setOrigin(btVector3(info.vertical_wing_offset.x, info.vertical_wing_offset.y, info.vertical_wing_offset.z));
-	comShape->addChildShape(left_wing_trans, leftWingShape);
+	comShape->addChildShape(left_wing_trans, leftWingShape);*/
 
-	btCollisionShape* rightWingShape = new btBoxShape(btVector3(info.vertical_wing_size.x * 0.5f, info.vertical_wing_size.y * 0.5f, info.vertical_wing_size.z * 0.5f));
+	/*btCollisionShape* rightWingShape = new btBoxShape(btVector3(info.vertical_wing_size.x * 0.5f, info.vertical_wing_size.y * 0.5f, info.vertical_wing_size.z * 0.5f));
 	shapes.add(rightWingShape);
 	btTransform right_wing_trans;
 	right_wing_trans.setIdentity();
 	right_wing_trans.setOrigin(btVector3(-info.vertical_wing_offset.x, info.vertical_wing_offset.y, info.vertical_wing_offset.z));
-	comShape->addChildShape(right_wing_trans, rightWingShape);
+	comShape->addChildShape(right_wing_trans, rightWingShape);*/
 
-	btCollisionShape* upperWingShape = new btBoxShape(btVector3(info.person_size.x * 0.5f, info.person_size.y * 0.5f, info.person_size.z * 0.5f));
+	/*btCollisionShape* upperWingShape = new btBoxShape(btVector3(info.person_size.x * 0.5f, info.person_size.y * 0.5f, info.person_size.z * 0.5f));
 	shapes.add(upperWingShape);
 	btTransform upper_trans;
 	upper_trans.setIdentity();
 	upper_trans.setOrigin(btVector3(info.person_offset.x, info.person_offset.y, info.person_offset.z));
-	comShape->addChildShape(upper_trans, upperWingShape);
+	comShape->addChildShape(upper_trans, upperWingShape);*/
 
 	btTransform startTransform;
 	startTransform.setIdentity();
