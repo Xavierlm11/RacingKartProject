@@ -233,13 +233,7 @@ update_status ModulePlayer::Update(float dt)
 		if (App->input->GetKey(SDL_SCANCODE_P) == KEY_REPEAT || a.y < -25)
 		{
 			Respow();
-			//vehicle->body->setAngularVelocity({ 0,0,0 });
-			//vehicle->body->setLinearVelocity({ 0,0,0 });
-			//mat4x4 rot;
-			//vec3 a = (0, 0, 0);
-			////rot.rotate(0, a);
-			//vehicle->SetTransform(&rot);
-			//vehicle->SetPos(0, 2, 0);
+			
 		}
 		if (App->input->GetKey(SDL_SCANCODE_O) == KEY_REPEAT)
 		{
@@ -279,19 +273,14 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
+
+	//stabilize the car
 	mat4x4 rot;
-	
 	rot.rotate(0, {0,0,0});
+
+
 	vehicle->Render();
 	
-
-	/*char title[80];
-	vec3 pos = vehicle->GetPos();
-	uint miliseconds = clock.Read() % 1000;
-	uint seconds = (clock.Read() / 1000) % 60;
-	uint minutes = (clock.Read() / 1000) / 60;
-	sprintf_s(title, "Time: %02d:%02d:%03d | %.1f Km/h | x: %f, y: %f, z: %f", minutes, seconds, miliseconds, vehicle->GetKmh(),pos.x,pos.y,pos.z);
-	App->window->SetTitle(title);*/
 
 	//130, 4, 90
 	return UPDATE_CONTINUE;
@@ -312,41 +301,7 @@ void ModulePlayer::Respow()
 
 void ModulePlayer::Reset()
 {
-	//vehicle->body->setAngularVelocity({ 0,0,50 });
-	//vehicle->body->setLinearVelocity({ 0,100,100 });
-	mat4x4 rot;
-	vec3 a = (0, 0, 200);
-	//vec3 b = { 0, 0, 0 };
-	//vehicle->SetTransform(&rot);
-	////vehicle->body->applyImpulse();
-	////vehicle->body->applyCentralForce({0,5,0});
-	////vehicle->body->applyCentralImpulse({ 0,20,0 });
 	vehicle->body->applyCentralForce({-80000,150000,80000 });
-	//vehicle->body->applyTorque();
-	//rot.rotate(0, a);
-
-
-	//float matrix[16];
-	//memset(matrix, 0.0f, sizeof(matrix));
-
-	vec3 p = vehicle->GetPos();
-	/*matrix[12] = p.x;
-	matrix[13] = p.y+5;
-	matrix[14] = p.z;
-	matrix[15] = 1;
-	int an = 90;
-
-	matrix[0] = cos(an);
-	matrix[1] = sin(an);
-	matrix[4] = -sin(an);
-	matrix[5] = cos(an);
-	matrix[10] =1;
-	
-	vehicle->SetTransform(matrix);*/
-
-	//vehicle->SetPos(p.x, p.y + 1, p.z);
-	//SetTransform(matrix);
-
 }
 
 void ModulePlayer::DragForce() {
