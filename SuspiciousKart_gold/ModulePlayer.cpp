@@ -25,11 +25,11 @@ bool ModulePlayer::Start()
 	car.chassis_size.Set(2.0f, 0.55f, 3.0f);
 	car.chassis_offset.Set(0.0f, 0.5f, 0.0f);
 	car.rear_wing_size.Set(1.2f, 0.05f, 0.5f);
-	car.rear_wing_offset.Set(0.0f, 1.05f, -1.5f);
+	car.rear_wing_offset.Set(0.0f, 1.55f, -1.5f);
 	car.vertical_wing_size.Set(0.05f, 0.5f, 0.5);
-	car.vertical_wing_offset.Set(0.6f, 1.0f, -1.5f);
+	car.vertical_wing_offset.Set(0.6f, 1.5f, -1.5f);
 	car.person_size.Set(0.9f, 1.3f, 0.7f);
-	car.person_offset.Set(0.0f, 1.0f, -0.5f);
+	car.person_offset.Set(0.0f, 1.5f, -0.5f);
 
 
 	car.mass = 1000.0f;
@@ -40,6 +40,7 @@ bool ModulePlayer::Start()
 	car.frictionSlip = 30.5f;
 	car.maxSuspensionForce = 1500.0f;
 
+	
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
 	float front_wheel_radius = 0.5f;
@@ -52,9 +53,9 @@ bool ModulePlayer::Start()
 	//float half_width = car.chassis_size.x*0.5f;
 	//float half_length = car.chassis_size.z*0.5f;
 
-	float half_width = car.chassis_size.x * 0.6;  // 0.5f
-	float front_wheels = (car.chassis_size.z * 1.2) -1.5f;
-	float rear_wheels = car.chassis_size.z * 0.6;
+	float half_width = car.chassis_size.x * 0.6 ;  // 0.5f
+	float front_wheels = (car.chassis_size.z * 1.2) -1.5;
+	float rear_wheels = car.chassis_size.z * 0.6 ;
 	
 	vec3 direction(0,-1,0);
 	vec3 axis(-1,0,0);
@@ -225,7 +226,7 @@ update_status ModulePlayer::Update(float dt)
 		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
 		{
 			//brake = BRAKE_POWER;
-			acceleration = BACKING * 6;
+			acceleration = BACKING * 4;
 		}
 		//else if (vehicle->GetKmh() < 0) acceleration = 700;
 		{vec3 a = vehicle->GetPos();
@@ -245,12 +246,15 @@ update_status ModulePlayer::Update(float dt)
 			vehicle->body->setAngularVelocity({ 0,0,0 });
 			vehicle->body->setLinearVelocity({ 0,0,0 });
 			mat4x4 rot;
-			vec3 a = (0, 0, 0);
+			vec3 a = (300, 300, 0);
 
 			vehicle->SetTransform(&rot);
 			vehicle->SetPos(130, 500, 55);
-			rot.rotate(0, a);
+			rot.rotate(200, a);
 		}
+
+		if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)Reset();
+
 		}
 		break;
 	case 5:
@@ -276,6 +280,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 	mat4x4 rot;
+	
 	rot.rotate(0, {0,0,0});
 	vehicle->Render();
 	
@@ -303,6 +308,45 @@ void ModulePlayer::Respow()
 	vehicle->SetTransform(&rot);
 	vehicle->SetPos(130, 4, 55);
 	rot.rotate(0, a);
+}
+
+void ModulePlayer::Reset()
+{
+	//vehicle->body->setAngularVelocity({ 0,0,50 });
+	//vehicle->body->setLinearVelocity({ 0,100,100 });
+	mat4x4 rot;
+	vec3 a = (0, 0, 200);
+	//vec3 b = { 0, 0, 0 };
+	//vehicle->SetTransform(&rot);
+	////vehicle->body->applyImpulse();
+	////vehicle->body->applyCentralForce({0,5,0});
+	////vehicle->body->applyCentralImpulse({ 0,20,0 });
+	vehicle->body->applyCentralForce({-80000,150000,80000 });
+	//vehicle->body->applyTorque();
+	//rot.rotate(0, a);
+
+
+	//float matrix[16];
+	//memset(matrix, 0.0f, sizeof(matrix));
+
+	vec3 p = vehicle->GetPos();
+	/*matrix[12] = p.x;
+	matrix[13] = p.y+5;
+	matrix[14] = p.z;
+	matrix[15] = 1;
+	int an = 90;
+
+	matrix[0] = cos(an);
+	matrix[1] = sin(an);
+	matrix[4] = -sin(an);
+	matrix[5] = cos(an);
+	matrix[10] =1;
+	
+	vehicle->SetTransform(matrix);*/
+
+	//vehicle->SetPos(p.x, p.y + 1, p.z);
+	//SetTransform(matrix);
+
 }
 
 void ModulePlayer::DragForce() {

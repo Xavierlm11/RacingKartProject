@@ -70,7 +70,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.axis = true;
 	p.Render();*/
 
-
+	
+	//map.cubo.PushBack(*bodyB);
 	for (int i = 0; i < map.cubo.Count(); i++) {
 		map.cubo[i].Render();
 	}
@@ -85,23 +86,17 @@ void ModuleSceneIntro::CreateMap() {
 
 	bodyB = new Cube(20, 10, 5);
 	bodyB->SetPos(130.5, 5, 70);
-
+	
+	
+	bodyB->color = White;
 	PhysBody3D* bodyA2 = App->physics->AddBody(*bodyA, 1);
 	PhysBody3D* bodyB2 = App->physics->AddBody(*bodyB, 1);
-	//bodyB->body.body->applyCentralForce({ 0,0.1,0 });
+	
+	
 
 	App->physics->AddConstraintHinge(*bodyA2, *bodyB2, vec3(15, 0, 0), vec3(0, 0, 0), vec3(0, 1, 0), vec3(0, 1, 0), false);
 
-	/*bodyC = new Cube(1, 10, 1);
-	bodyC->SetPos(143.5, 5, 70);
 
-	bodyD = new Cube(10, 10, 5);
-	bodyD->SetPos(120, 5, 70);
-
-	PhysBody3D* bodyC2 = App->physics->AddBody(*bodyC, 1);
-	PhysBody3D* bodyD2 = App->physics->AddBody(*bodyD, 1);
-
-	App->physics->AddConstraintHinge(*bodyC2, *bodyD2, vec3(8, 0, 8), vec3(0, 0, 0), vec3(0, 1, 0), vec3(0, 1, 0), false);*/
 
 
 	/*--------------------BackPack--------------------*/
@@ -363,6 +358,7 @@ void ModuleSceneIntro::CreateCubeMap(const vec3 pos, const vec3 dim, Color color
 	Cube* a;
 	a = new Cube(dim.x, dim.y, dim.z);
 	a->color = color;
+	
 	a->SetPos(pos.x, pos.y, pos.z);
 	map.cubo.PushBack(*a);
 	map.cubo3d.PushBack(App->physics->AddBody(*a, 0.0f));

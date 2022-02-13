@@ -34,6 +34,8 @@ public:
 
 	void Respow();
 
+	void Reset();
+
 public:
 
 	PhysVehicle3D* vehicle;
